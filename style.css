@@ -16,8 +16,12 @@ html, body {
 }
 
 .text_black {
-    display: inline-block;
+    /* display: inline-block; */
     color: black;
+}
+
+.text_blue {
+    color: #4c86af;
 }
 
 .heading {
@@ -385,6 +389,17 @@ a {
     box-shadow: 2px 2px 4px #000000cb;
 }
 
+.telephone-point-image {
+    filter: invert(1);
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 64px;
+    ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -moz-crisp-edges;
+}
+
 @media (max-width: 730px) {
     .containers {
         grid-template-rows: auto auto 1fr;
@@ -407,5 +422,30 @@ a {
     
     .container-active > .button_blue {
         width: auto;
+    }
+
+    .telephone-point-image {
+        display: block;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr 1fr;
+        grid-template-areas: "container__title container__title"
+        "container__date container__time"
+        "container__select-button container__select-button";
+    }
+    
+    .task {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: "task__title task__title"
+        "task__progress-bar task__categories"
+        "task__date task__time"
+        "task__amount task__buttons";
+        
+
     }
 }

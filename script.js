@@ -208,7 +208,7 @@ class Updater {
     }
 }
 
-let version = new Updater (11, "11 close-alpha");
+let version = new Updater (12, "12 close-alpha");
 
 // хранит все элементы из registry как объекты, а не свойства
 let elementObjectArray = []
@@ -559,6 +559,7 @@ let launcher = {
         if (registry.isFirstStart) {
             // При первом запуске
             globalPopups.localShowForID("js-popup-about");
+
         }
     },
 
@@ -736,7 +737,7 @@ let launcher = {
                     // проверка на level задачи, если он равен 0, то простая задача, иначе
                     if (elementObjectArray["task"][i].get().level == 0) {
                         document.querySelector("#container-view__inner").innerHTML += `
-                        <div class="task" id="task_${elementObjectArray["task"][i].getID()}" style="margin-left: ${elementObjectArray["task"][i].get().level * 8}px;">
+                        <div class="task" id="task_${elementObjectArray["task"][i].getID()}" style="margin-left: ${elementObjectArray["task"][i].get().level * 16}px;">
                             <p class="task__title">${elementObjectArray["task"][i].get()["title"]}</p>
                             <p class="task__amount">Выполнено: ${elementObjectArray["task"][i].get().doneAmount} из ${elementObjectArray["task"][i].get().amount}</p>
                             <p class="task__date">${elementObjectArray["task"][i].get().date}</p>
@@ -1027,19 +1028,29 @@ let launcher = {
 }; 
 
 elementObjectArray = registry.createElementObjectArray ();
+let currentPage = "";
 
 let leftPanelPopups = new Popuper ();
 let globalPopups = new Popuper ();
 let fullScreens = new Popuper ();
+let telephonePoints = new Popuper ();
+
 
 leftPanelPopups.reg(["js-container-task", "js-container-container", "js-container-category", "js-container-setting"], "display");
 leftPanelPopups.localShowForID("js-container-container");
+currentPage = "js-container-container";
 
 globalPopups.reg(["js-popup-about", "js-popup-update"], "display");
 globalPopups.hideAll();
 
 fullScreens.reg(["js-full-screen_debug", "js-full-screen_clear"],"display", "grid");
 fullScreens.hideAll();
+
+var isWidth730 = window.matchMedia("(max-width: 730px)");
+if (isWidth730) {
+    telephonePoints.reg(["js-telephone-point", "js-telephone-point-show"], "display", "block");
+    telephonePoints.localShowForID("js-telephone-point");
+}
 
 launcher.start();
 

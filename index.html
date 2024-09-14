@@ -10,10 +10,10 @@
 <body>
     <div class="containers">
         <div class="container-tools">
-            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-task'); launcher.viewTask();">Задачи</button>
-            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-container'); launcher.viewContainer();">Контейнер</button>
-            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-category'); launcher.viewCategory();">Категории</button>
-            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-setting');">Настройки</button>
+            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-task'); launcher.viewTask(); currentPage = 'js-container-task'; telephonePoints.localShowForID('js-telephone-point');">Задачи</button>
+            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-container'); launcher.viewContainer(); currentPage = 'js-container-container'; telephonePoints.localShowForID('js-telephone-point');">Контейнер</button>
+            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-category'); launcher.viewCategory(); currentPage = 'js-container-category'; telephonePoints.localShowForID('js-telephone-point');">Категории</button>
+            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-setting'); currentPage = 'js-container-setting'; telephonePoints.localShowForID('js-telephone-point');">Настройки</button>
         </div>
         <div class="container-task container-active" id="js-container-task">
             <p class="text">Задача</p>
@@ -56,8 +56,6 @@
             <br><button class="button_white" onclick="globalPopups.localShowForID ('js-popup-update')">Что нового?</button>
             <br><button class="button_white" onclick="fullScreens.localShowForID('js-full-screen_debug');">Включить режим дебагинга</button>
         </div>
-
-
         <div class="container-view">
             <div class="block-current"></div>
             <div class="container__inner container__inner" id="container-view__inner">
@@ -67,8 +65,8 @@
     <div class="popup" id="js-popup-about">
         <div class="popup__inner popup__inner_main">
             <p class="text_black heading">TODO LIST EXTENDED</p>
-            <br> <p class="text_black">Простая программа для работы с задачами, категориями и прочим.</p>
-            <br> <p class="text_black">Для справки: <a href="https://t.me/+Uf78f6TPiTA3Nzgy">https://t.me/+Uf78f6TPiTA3Nzgy</a></p>
+            <p class="text_black">Простая программа для работы с задачами, категориями и прочим.</p>
+            <p class="text_black">Для справки: <a href="https://t.me/+Uf78f6TPiTA3Nzgy">https://t.me/+Uf78f6TPiTA3Nzgy</a></p>
             <button class="button_blue" onclick="globalPopups.hideAll()">Закрыть окно</button>
         </div>
     </div>
@@ -91,11 +89,22 @@
         <div class="popup__inner popup__inner_main">
             <p class="text_black heading">ОБНОВЛЕНИЯ</p>
             <br>
-            <ol>
-                <p class="text_black">Здесь будут описываться обновления приложения</p>
-            </ol>
+            <p class="text_blue">12 close-alpha</p>
+            <p class="text_black">1. Добавлена кнопка для телефона, скрывает контейнеры</p>
+            <p class="text_black">2. Изменён вид задач и контейнеров для телефонов</p>
             <button class="button_blue" onclick="globalPopups.hideAll()">Закрыть окно</button>
         </div>
+    </div>
+
+    <div class="telephone-point" id="js-telephone-point">
+        <button onclick="leftPanelPopups.hideAll(); telephonePoints.toggleAll();">
+            <img src="icons/icons/open.png" alt="" class="telephone-point-image">
+        </button>   
+    </div>
+    <div class="telephone-point" id="js-telephone-point-show">
+        <button onclick="leftPanelPopups.localShowForID(currentPage); telephonePoints.toggleAll();">
+            <img src="icons/icons/open.png" alt="" class="telephone-point-image">
+        </button>   
     </div>
     <script src="script.js"></script>
 </body>
