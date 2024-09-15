@@ -9,12 +9,15 @@
 </head>
 <body>
     <div class="containers">
+        <!-- Переключатели инструментов -->
         <div class="container-tools">
             <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-task'); launcher.viewTask(); currentPage = 'js-container-task'; telephonePoints.localShowForID('js-telephone-point');">Задачи</button>
             <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-container'); launcher.viewContainer(); currentPage = 'js-container-container'; telephonePoints.localShowForID('js-telephone-point');">Контейнер</button>
             <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-category'); launcher.viewCategory(); currentPage = 'js-container-category'; telephonePoints.localShowForID('js-telephone-point');">Категории</button>
-            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-setting'); currentPage = 'js-container-setting'; telephonePoints.localShowForID('js-telephone-point');">Настройки</button>
+            <button class="button_white" onclick="leftPanelPopups.localShowForID('js-container-setting'); launcher.viewSetting(); currentPage = 'js-container-setting'; telephonePoints.localShowForID('js-telephone-point');">Настройки</button>
         </div>
+
+        <!-- Инструменты задач -->
         <div class="container-task container-active" id="js-container-task">
             <p class="text">Задача</p>
             <br><input type="text" class="input" id="textTask" placeholder="Текст задачи">
@@ -25,87 +28,137 @@
             <button class="button_blue" id="buttonCreate" onclick="launcher.createTask()">Создать</button>
             <button class="button_blue" id="buttonDelete" onclick="launcher.deleteTask ()">Удалить</button>
             <button class="button_blue" id="buttonChange" onclick="launcher.changeTask ()">Изменить</button>
-            <button class="button_blue" id="buttonCreate" onclick="launcher.viewTask()">Просмотреть</button>
+            <!-- <button class="button_blue" id="buttonCreate" onclick="launcher.viewTask()">Просмотреть</button> -->
         </div>
 
+        <!-- Инструменты контейнеров -->
         <div class="container-container container-active" id="js-container-container">
             <p class="text">Контейнер</p>
             <br><input type="text" class="input" id="textContainer" placeholder="Название контейнера">
             <button class="button_blue" onclick="launcher.createContainer()">Создать</button>
-            <button class="button_blue" onclick="launcher.deleteContainer()">Удалить</button>
+            <button class="button_blue" onclick="fullScreens.localShowForID('js-full-screen_container-delete');">Удалить</button>
             <button class="button_blue" onclick="launcher.changeContainer()">Изменить</button>
-            <button class="button_blue" onclick="launcher.viewContainer()">Просмотреть</button>
+            <!-- <button class="button_blue" onclick="launcher.viewContainer()">Просмотреть</button> -->
         </div>
 
+        <!-- Инструменты категорий -->
         <div class="container-category container-active" id="js-container-category">
             <p class="text">Категории</p>
             <br><input type="text" class="input" id="js-titleCategory" placeholder="Название категории">
             <br><input type="text" class="input" id="js-descriptionCategory" placeholder="Описание категории">
             <button class="button_blue" id="buttonCreate" onclick="launcher.createCategory ()">Создать</button>
             <button class="button_blue" id="buttonDelete" onclick="launcher.deleteContainer ()">Удалить</button>
-            <button class="button_blue" id="buttonCreate" onclick="launcher.viewCategory ()">Просмотреть</button>
+            <!-- <button class="button_blue" id="buttonCreate" onclick="launcher.viewCategory ()">Просмотреть</button> -->
             <select class="select-tasksForCategory" id="js-select-tasksForCategory"></select>
             <button class="button_blue" id="buttonCreate" onclick="launcher.addTaskToCategory(document.querySelector('#js-select-tasksForCategory').value); launcher.viewCategory ()">Добавить задачу</button>
             <button class="button_blue" id="buttonCreate" onclick="launcher.delTaskToCategory(document.querySelector('#js-select-tasksForCategory').value); launcher.viewCategory ()">Убрать задачу</button>
         </div>
 
+        <!-- Инструменты найсртроек -->
         <div class="container-category container-active" id="js-container-setting">
             <p class="text">Настройки</p>
-            <br><button class="button_white" onclick="fullScreens.localShowForID('js-full-screen_clear');">Стереть данные</button>
+            <br><button class="button_white button_red" onclick="fullScreens.localShowForID('js-full-screen_clear');">Стереть данные</button>
             <br><button class="button_white" onclick="globalPopups.localShowForID ('js-popup-about')">О программе</button>
             <br><button class="button_white" onclick="globalPopups.localShowForID ('js-popup-update')">Что нового?</button>
+            <br><button class="button_white" onclick="globalPopups.localShowForID ('js-popup-bind')">сочетание клавиш</button>
             <br><button class="button_white" onclick="fullScreens.localShowForID('js-full-screen_debug');">Включить режим дебагинга</button>
         </div>
+
+        <!-- Инструменты просмотрщика -->
         <div class="container-view">
             <div class="block-current"></div>
             <div class="container__inner container__inner" id="container-view__inner">
             </div>
         </div>
     </div>
+
+    <!-- Модальное окно: о приложении -->
     <div class="popup" id="js-popup-about">
         <div class="popup__inner popup__inner_main">
             <p class="text_black heading">TODO LIST EXTENDED</p>
             <p class="text_black">Простая программа для работы с задачами, категориями и прочим.</p>
-            <p class="text_black">Для справки: <a href="https://t.me/+Uf78f6TPiTA3Nzgy">https://t.me/+Uf78f6TPiTA3Nzgy</a></p>
+            <p class="text_black">Для справки: <a class="text_blue" href="https://t.me/+Uf78f6TPiTA3Nzgy">https://t.me/+Uf78f6TPiTA3Nzgy</a></p>
+            <p class="text_black">Для связи с автором используйте почту:</p>
+            <p class="text_black">Почта: <span class="text_blue">rakzarvoice@gmail.com</span></p>
             <button class="button_blue" onclick="globalPopups.hideAll()">Закрыть окно</button>
         </div>
     </div>
+
+    <!-- Нижняя панель: тестирование -->
     <div class="full-screen" id="js-full-screen_debug">
         <div class="full-screen__inner">
             <p class="text">Включить логи в консоль браузера?</p>
-            <button class="button" onclick="fullScreens.hideAll(); program.on()">Включить</button>
+            <button class="button button_green" onclick="fullScreens.hideAll(); program.on()">Включить</button>
             <button class="button" onclick="fullScreens.hideAll(); program.off()">X</button>
         </div>
     </div>
+
+    <!-- Нижняя панель: очистка данных -->
     <div class="full-screen" id="js-full-screen_clear">
         <div class="full-screen__inner">
             <p class="text">Все данные программы будут потеряны!</p>
-            <button class="button" onclick="localStorage.clear(); location.reload();">Стереть</button>
+            <button class="button button_red" onclick="localStorage.clear(); location.reload();">Стереть</button>
             <button class="button" onclick="fullScreens.hideAll(); program.off()">X</button>
-            <!-- <button class="button_white" onclick="localStorage.clear(); location.reload();">Стереть данные</button> -->
         </div>
     </div>
+
+    <!-- Нижняя панель: удаление контейнера -->
+    <div class="full-screen" id="js-full-screen_container-delete">
+        <div class="full-screen__inner">
+            <p class="text">Контейнер будет удален, вы уверены?</p>
+            <button class="button button_red" onclick="launcher.deleteContainer ()">Удалить</button>
+            <button class="button" onclick="fullScreens.hideAll();">X</button>
+        </div>
+    </div>
+
+    <!-- модальное окно: обновления -->
     <div class="popup" id="js-popup-update">
         <div class="popup__inner popup__inner_main">
             <p class="text_black heading">ОБНОВЛЕНИЯ</p>
             <br>
+            <p class="text_blue">13 close-alpha</p>
+            <p class="text_black">- 15.09.2024</p>
+            <p class="text_black">1. Добавлено окно и исправлена ошибка: "сочетание клавиш"</p>
+            <p class="text_black">2. Слегка изменены цвета</p>
+            <br>
             <p class="text_blue">12 close-alpha</p>
+            <p class="text_black">- 14.09.2024</p>
             <p class="text_black">1. Добавлена кнопка для телефона, скрывает контейнеры</p>
             <p class="text_black">2. Изменён вид задач и контейнеров для телефонов</p>
             <button class="button_blue" onclick="globalPopups.hideAll()">Закрыть окно</button>
         </div>
     </div>
 
+    <!-- модальное окно: сочетание клавиш -->
+    <div class="popup" id="js-popup-bind">
+        <div class="popup__inner popup__inner_main">
+            <p class="text_black heading">ОБНОВЛЕНИЯ</p>
+            <br>
+            <p class="text_black"><span class="text_blue">SHIFT + 1</span> (окно задач)</p>
+            <p class="text_black"><span class="text_blue">SHIFT + 2</span> (окно контейнеров)</p>
+            <p class="text_black"><span class="text_blue">SHIFT + 3</span> (окно категорий)</p>
+            <p class="text_black"><span class="text_blue">SHIFT + 4</span> (окно опций)</p>
+            <p class="text_black"><span class="text_blue">SHIFT + Z</span> (переключить важность задачи)</p>
+            <p class="text_black"><span class="text_blue">SHIFT + X</span> (переключить завершенность задач)</p>
+            <p class="text_black"><span class="text_blue">SHIFT + ENTER</span> (создаёт задачу, контейнер, категорию)</p>
+            <button class="button_blue" onclick="globalPopups.hideAll()">Закрыть окно</button>
+        </div>
+    </div>
+
+    <!-- переключатели для телефонов -->
+    <!-- скрытие элементов -->
     <div class="telephone-point" id="js-telephone-point">
         <button onclick="leftPanelPopups.hideAll(); telephonePoints.toggleAll();">
             <img src="icons/icons/open.png" alt="" class="telephone-point-image">
         </button>   
     </div>
+    <!-- показ элементов -->
     <div class="telephone-point" id="js-telephone-point-show">
         <button onclick="leftPanelPopups.localShowForID(currentPage); telephonePoints.toggleAll();">
             <img src="icons/icons/open.png" alt="" class="telephone-point-image">
         </button>   
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

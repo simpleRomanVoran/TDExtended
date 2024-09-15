@@ -208,7 +208,7 @@ class Updater {
     }
 }
 
-let version = new Updater (12, "12 close-alpha");
+let version = new Updater (13, "13 close-alpha");
 
 // хранит все элементы из registry как объекты, а не свойства
 let elementObjectArray = []
@@ -1025,6 +1025,11 @@ let launcher = {
 
         panel.innerHTML = panelText;
     },
+
+    viewSetting () {
+        document.querySelector("#container-view__inner").innerHTML = "";
+        document.querySelector(".block-current").innerHTML = "<p class='text_black text_current'>Панель настроек открыта</p>";
+    }
 }; 
 
 elementObjectArray = registry.createElementObjectArray ();
@@ -1040,10 +1045,10 @@ leftPanelPopups.reg(["js-container-task", "js-container-container", "js-containe
 leftPanelPopups.localShowForID("js-container-container");
 currentPage = "js-container-container";
 
-globalPopups.reg(["js-popup-about", "js-popup-update"], "display");
+globalPopups.reg(["js-popup-about", "js-popup-update", "js-popup-bind"], "display");
 globalPopups.hideAll();
 
-fullScreens.reg(["js-full-screen_debug", "js-full-screen_clear"],"display", "grid");
+fullScreens.reg(["js-full-screen_debug", "js-full-screen_clear", "js-full-screen_container-delete"], "display", "grid");
 fullScreens.hideAll();
 
 var isWidth730 = window.matchMedia("(max-width: 730px)");
@@ -1056,14 +1061,6 @@ launcher.start();
 
 document.addEventListener('keydown', function(event) {
     if (event.shiftKey) {
-        switch(this.OPTION) {
-            case "block": this.popupElement.style.display = "block"; break;
-            case "grid": this.popupElement.style.display = "grid"; break;
-            case "inline": this.popupElement.style.display = "inline"; break;
-            case "inline-block": this.popupElement.style.display = "inline-block"; break;
-            default:  this.popupElement.style.display = "block";
-        }
-
         switch (event.code) {
             case "Digit1": leftPanelPopups.localShowForID("js-container-task"); break;
             case "Digit2": leftPanelPopups.localShowForID("js-container-container"); break;
